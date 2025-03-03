@@ -105,3 +105,5 @@ docker-compose.prod.yml
 # For CI/CD systems or other environments
 .circleci/config.yml
 .github/workflows/*.yml
+/app/assets/builds/*
+!/app/assets/builds/.keep
