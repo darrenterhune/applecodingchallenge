@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootsnap', require: false
+gem 'faraday'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg', '~> 1.1'
@@ -25,6 +26,7 @@ group :development, :test do
   gem 'fasterer'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'rubocop'
   gem 'rubocop-packaging'
   gem 'rubocop-performance'
   gem 'rubocop-rspec'
