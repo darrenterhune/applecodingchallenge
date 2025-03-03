@@ -1,0 +1,107 @@
+# Ignore bundler config
+/.bundle
+
+# Ignore the default SQLite database file
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all log files and tempfiles
+/log/*
+!/log/.keep
+/tmp
+
+# Ignore all vendor files
+/vendor/*
+!/vendor/.keep
+
+# Ignore Byebug and Pry history files
+.byebug_history
+*.pry
+
+# Ignore test coverage reports
+/coverage/
+
+# Ignore IDE configurations and other editor files
+/.idea
+.vscode
+*.iml
+
+# Ignore environment variables and credentials
+/config/credentials.yml.enc
+/config/master.key
+/config/secrets.yml.key
+
+# Ignore node_modules and package-lock.json for JavaScript packages
+/node_modules
+/yarn-error.log
+/yarn-debug.log*
+/package-lock.json
+/pnpm-lock.yaml
+
+# Ignore Ruby gem build artifacts
+/pkg/
+
+# Ignore spring and .rbenv directories
+/spring/
+.rbenv-gemsets
+
+# Ignore Capybara screenshots
+/tmp/capybara/
+
+# Ignore RuboCop todo file
+.rubocop_todo.yml
+
+# Asset builds
+# Ignore the entire builds directory
+app/assets/builds/
+app/assets/builds/tailwind.css
+!app/assets/builds/.keep
+
+# Ignore Rails cache files
+/tmp/cache/assets
+
+# Ignore Rails generated files
+/public/assets
+/public/packs
+/public/packs-test
+/storage
+
+# Ignore Rails test files
+/spec/examples.txt
+/spec/tmp
+
+# Ignore system test screenshots
+/tmp/screenshots/
+
+# Ignore Sorbet's RBI cache
+/sorbet/rbi/
+
+# Ignore .DS_Store file for macOS users
+.DS_Store
+
+# Ignore docker volumes
+volumes/
+
+# Ignore docker-compose files for specific environments
+docker-compose.override.yml
+docker-compose.prod.yml
+
+# Ignore Rails credentials test key
+/config/credentials/test.key
+
+# Ignore webpacker's manifest.json
+/public/packs/manifest.json
+
+# Ignore Rails compiled views (if using actionview precompiler)
+/tmp/cache/views/
+
+# Ignore any .env files for environment variables
+.env
+.env.*
+
+# Ignore any local configuration files
+/config/local_env.yml
+
+# For CI/CD systems or other environments
+.circleci/config.yml
+.github/workflows/*.yml
