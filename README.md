@@ -18,6 +18,12 @@ Turn caching on: `rails dev:cache`
 
 http://localhost:3000
 
+Run rubocop, fasterer, bundle-audit, erb-lint and brakeman:
+
+```
+script/lint
+```
+
 ## Notes
 
 Some things I'd do differently
