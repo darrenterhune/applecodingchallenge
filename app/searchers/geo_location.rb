@@ -52,6 +52,6 @@ class GeoLocation < Base
     # remove control and \n\t characters
     str = str.gsub(/[\p{Cc}&&[^\n\t]]/, '').strip
     # remove injection like characters
-    str = str.gsub(/[<>|]/, '')
+    str.gsub(/[<>|]/, '')
   end
 end

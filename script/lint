@@ -1,0 +1,18 @@
+#!/bin/sh
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Bundle audit
+bundle exec bundle-audit
+
+# Brakeman
+bundle exec brakeman
+
+# Rubocop
+bundle exec rubocop -a
+
+# Fasterer
+bundle exec fasterer
+
+# Erb-lint
+bundle exec erblint app/**/*.html{+*,}.erb

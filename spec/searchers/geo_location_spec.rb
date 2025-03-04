@@ -18,7 +18,7 @@ RSpec.describe GeoLocation do
     end
 
     it 'returns latitude and longitude when no error' do
-      expect(instance.call).to eq([{"latitude"=>48.9333, "longitude"=>125.05}])
+      expect(instance.call).to eq([{ 'latitude' => 48.9333, 'longitude' => 125.05 }])
     end
 
     it 'returns the error response when there is an error' do

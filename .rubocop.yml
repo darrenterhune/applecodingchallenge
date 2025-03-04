@@ -8,7 +8,6 @@ Style/StringLiterals:
   EnforcedStyle: single_quotes
 Style/TrailingCommaInHashLiteral:
   Enabled: true
-  EnforcedStyle: no_comma
 Style/EmptyMethod:
   Enabled: true
   EnforcedStyle: expanded
@@ -20,4 +19,24 @@ Metrics/MethodLength:
   Enabled: true
   Max: 25
 Metrics/BlockLength:
-  Exclude: 'spec/**/*_spec.rb'
+  Exclude:
+    - spec/**/*_spec.rb
+    - db/**/*.rb
+Style/SpecialGlobalVars:
+  Exclude:
+    - bin/*
+    - script/*
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - bin/*
+    - script/*
+Metrics/PerceivedComplexity:
+  Exclude:
+    - bin/*
+    - script/*
+Style/GlobalStdStream:
+  Exclude:
+    - bin/*
+    - script/*
+Layout/LineLength:
+  Max: 120

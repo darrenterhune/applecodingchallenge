@@ -35,7 +35,6 @@ group :development do
   gem 'brakeman', require: false
   gem 'bundler-audit'
   gem 'fasterer'
-  gem 'syntax_tree'
   gem 'web-console'
 end
 
