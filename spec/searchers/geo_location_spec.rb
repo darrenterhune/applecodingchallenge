@@ -11,7 +11,7 @@ RSpec.describe GeoLocation do
 
   describe '#call' do
     let(:successful_response) { { results: [{ 'latitude' => 48.9333, 'longitude' => 125.0500 }] }.as_json }
-    let(:error_response) { { msg: 'Failed to retrieve data', error: true }.as_json }
+    let(:error_response) { { error: true }.as_json }
 
     before do
       allow(instance).to receive(:response).and_return(successful_response)
@@ -23,7 +23,7 @@ RSpec.describe GeoLocation do
 
     it 'returns the error response when there is an error' do
       allow(instance).to receive(:response).and_return(error_response)
-      expect(instance.call).to eq(error_response)
+      expect(instance.call).to eq({ latitude: nil, longitude: nil })
     end
   end
 end

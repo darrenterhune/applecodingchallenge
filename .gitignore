@@ -13,6 +13,7 @@
 # Ignore all vendor files
 /vendor/*
 !/vendor/.keep
+!/vendor/javascript
 
 # Ignore Byebug and Pry history files
 .byebug_history

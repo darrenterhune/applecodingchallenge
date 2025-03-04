@@ -1,29 +1,44 @@
+# app/searchers/geo_location.rb
+
+# This class is for retrieving lat/long coordinates from an API
+# The base class has more info on the API
+#
+# - Attributes:
+#   - @params: Hash, { search: "Ucluelet" }
+# - Methods:
+#   - #call: Send GET request to API to retrieve lat/long coordinates
+#
+# Example:
+#
+#   GeoLocation.new({ search: "Ucluelet" }).call
+#
+# => { latitude: 48.930725, longitude: -125.53856 }
+#
 class GeoLocation < Base
   def call
-    return response if response['error']
+    return {} unless santitized_search_param.present?
 
-    { latitude:, longitude: }
+    Rails.cache.fetch(santitized_search_param, expires_in: 30.minutes) do
+      { latitude:, longitude: }
+    end
   end
 
   private
 
   def latitude
+    return nil if response['results'].blank?
+
     response['results'][0]['latitude']
   end
 
   def longitude
+    return nil if response['results'].blank?
+
     response['results'][0]['longitude']
   end
 
-  def response
-    @response ||= begin
-      response = connection.get('/v1/search') { |req| req.params['name'] = santitized_search_param }
-      JSON.parse(response.body)
-    # For sake of time of a code challenge, I simply rescue from StandardError however this is not a good idea in
-    # practice and I would never do this. Generally I would rescue from individual class object errors
-    rescue StandardError => e
-      { msg: "Failed to retrieve data: #{e.message}", error: true }
-    end
+  def path
+    '/v1/search'
   end
 
   def api_url
@@ -33,13 +48,14 @@ class GeoLocation < Base
   def api_params
     {
       count: 1,
+      format: 'json',
       language: 'en',
-      format: 'json'
+      name: santitized_search_param
     }
   end
 
   def santitized_search_param
-    return unless @params.present?
+    return unless @params[:search].present?
 
     # ensure proper encoding to avoid issues
     str = @params[:search].encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
