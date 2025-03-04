@@ -2,13 +2,16 @@
 
 Apple Coding Challenge
 
+ruby 3.3.6
+rails 8.0.1
+
 ## Install
 
 ```
-git clone git@github.com:darrenterhune/applecodechallenge.git
-cd applecodechallenge
+git clone git@github.com:darrenterhune/applecodingchallenge.git
+cd applecodingchallenge
 bin/setup
-rails s
+bin/dev
 ```
 
 Turn caching on: `rails dev:cache`
