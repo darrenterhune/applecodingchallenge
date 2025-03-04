@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Weather', type: :request do
   describe 'POST /weather' do
     it 'returns http success without data' do
-      params = { search: '' }
+      params = { search: '', latlong: "48.930725,-125.53856" }
 
       post '/weather', params:, as: :turbo_stream
 
@@ -15,7 +15,7 @@ RSpec.describe 'Weather', type: :request do
     end
 
     it 'returns http success with data' do
-      params = { search: 'Ucluelet' }
+      params = { search: 'Ucluelet', latlong: "48.930725,-125.53856" }
 
       post '/weather', params:, as: :turbo_stream
 

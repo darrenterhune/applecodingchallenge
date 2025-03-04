@@ -20,7 +20,8 @@ class Base
     # practice and I would never do this. Generally I would rescue from individual class object errors. Finding all
     # those is not trivial.
     rescue StandardError => e
-      { msg: "Failed to retrieve data: #{e.message}", error: true }
+      Rails.logger.error("Failed to retrieve data: #{e.message}")
+      { results: [] }.as_json
     end
   end
 

@@ -4,15 +4,16 @@
 # The base class has more info on the API
 #
 # - Attributes:
-#   - @params: Hash { latitude: 48.930725, longitude: -125.53856 }
+#   - @params: Hash { latlong: "48.930725,-125.53856" }
 # - Methods:
 #   - #call: Send GET request to API to retrieve weather data
 #
 # Example:
 #
-#   Weather.new( { latitude: 48.930725, longitude: -125.53856 }).call
+#   Weather.new({ latlong: "48.930725,-125.53856" }).call
 #
-# => {
+# =>
+# {
 #   'latitude' => 48.930725,
 #   'longitude' => -125.53856,
 #   'generationtime_ms' => 0.247955322265625,
@@ -47,12 +48,16 @@ class Weather < Base
   def call
     return {} unless @params.present?
 
-    Rails.cache.fetch([@params[:latitude], @params[:longitude]], expires_in: 30.minutes) do
+    Rails.cache.fetch([:weather, @params[:latlong]], expires_in: 30.minutes) do
       response
     end
   end
 
   private
+
+  def latitude_longitude
+    @params[:latlong].split(',')
+  end
 
   def path
     '/v1/forecast'
@@ -65,8 +70,8 @@ class Weather < Base
   def api_params
     {
       language: 'en',
-      latitude: @params[:latitude],
-      longitude: @params[:longitude],
+      latitude: latitude_longitude[0],
+      longitude: latitude_longitude[1],
       timezone: 'America/Los_Angeles',
       current: 'temperature_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m',
       hourly: 'wind_speed_80m,wind_direction_80m,temperature_80m',

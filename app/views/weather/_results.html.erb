@@ -1,0 +1,31 @@
+<div class="grid grid-cols-1">
+	<h2 class="text-2xl font-bold text-gray-800 mb-4">Weather for Latitude: <%= weather["latitude"] %>, Longitude: <%= weather["longitude"] %></h2>
+	<div class="grid grid-cols-1 gap-4">
+		<div>
+			<p class="text-sm text-gray-600"><span class="font-semibold">Timezone:</span> <%= weather["timezone"] %> (<%= weather["timezone_abbreviation"] %>)</p>
+			<p class="text-sm text-gray-600"><span class="font-semibold">Elevation:</span> <%= weather["elevation"] %> m</p>
+		</div>
+		<div class="bg-gray-50 p-4 rounded-md">
+			<h2 class="text-2xl font-bold text-gray-800 mb-4">Current Weather (<%= weather["current"]["time"] %>)</h2>
+			<ul class="space-y-2 text-sm text-gray-600">
+				<li><span class="font-semibold">Temperature:</span> <%= weather["current"]["temperature_2m"] %> <%= weather["current_units"]["temperature_2m"] %></li>
+				<li><span class="font-semibold">Precipitation:</span> <%= weather["current"]["precipitation"] %> <%= weather["current_units"]["precipitation"] %></li>
+				<li><span class="font-semibold">Wind Speed:</span> <%= weather["current"]["wind_speed_10m"] %> <%= weather["current_units"]["wind_speed_10m"] %></li>
+				<li><span class="font-semibold">Wind Direction:</span> <%= weather["current"]["wind_direction_10m"] %> <%= weather["current_units"]["wind_direction_10m"] %></li>
+				<li><span class="font-semibold">Wind Gusts:</span> <%= weather["current"]["wind_gusts_10m"] %> <%= weather["current_units"]["wind_gusts_10m"] %></li>
+			</ul>
+		</div>
+		<div class="p-6 bg-white rounded-lg shadow-md" data-controller="wind" data-weather="<%= weather["hourly"].to_json %>">
+			<h2 class="text-2xl font-bold text-gray-800 mb-4">Hourly Wind Speed</h2>
+			<svg data-wind-target="chart" class="w-full h-[400px]"></svg>
+		</div>
+		<div class="p-6 bg-white rounded-lg shadow-md" data-controller="temp" data-weather="<%= weather["hourly"].to_json %>">
+			<h2 class="text-2xl font-bold text-gray-800 mb-4">Hourly Temperature</h2>
+			<svg data-temp-target="chart" class="w-full h-[400px]"></svg>
+		</div>
+		<div class="p-6 bg-white rounded-lg shadow-md" data-controller="daily" data-weather='<%= weather["daily"].to_json %>'>
+			<h2 class="text-2xl font-bold text-gray-800 mb-4">Daily Weather Forecast</h2>
+			<svg data-daily-target="chart" class="w-full h-[400px]"></svg>
+		</div>
+	</div>
+</div>

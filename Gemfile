@@ -18,12 +18,9 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
-  gem 'brakeman', require: false
-  gem 'bundler-audit'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
   gem 'erb_lint', require: false
-  gem 'fasterer'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop'
@@ -35,6 +32,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman', require: false
+  gem 'bundler-audit'
+  gem 'fasterer'
   gem 'syntax_tree'
   gem 'web-console'
 end

@@ -1,0 +1,6 @@
+<%= form_with(url: weather_path, method: :post, class: "flex items-center gap-2") do |form| %>
+	<%= text_field_tag(:search, params[:search], placeholder: "Enter your search term...", class: "search-input") %>
+	<%= select_tag("latlong", options_for_select(geocode_options_for_select_from(geocodes), params[:latlong]), class: 'search-input') %>
+	<%= submit_tag("Get Weather!", class: "search-btn", data: { turbo_submits_with: "Searching..." }) %>
+	<%= link_to('Reset', root_path, class: "search-btn", data: { turbo_frame: "_top" }) %>
+<% end %>

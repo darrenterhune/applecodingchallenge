@@ -1,6 +1,6 @@
 <%= turbo_frame_tag('search_form') do %>
 	<div class="grid grid-cols-1 gap-4">
-		<%= form_with(url: weather_path, method: :post, class: "flex items-center gap-2") do |form| %>
+		<%= form_with(url: geocode_path, method: :post, class: "flex items-center gap-2") do |form| %>
 			<%= form.text_field(:search, placeholder: "Enter your search term...", class: "search-input") %>
 			<%= form.submit("Search", class: "search-btn", data: { turbo_submits_with: "Searching..." }) %>
 		<% end %>

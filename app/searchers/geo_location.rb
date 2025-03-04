@@ -12,30 +12,22 @@
 #
 #   GeoLocation.new({ search: "Ucluelet" }).call
 #
-# => { latitude: 48.930725, longitude: -125.53856 }
+# =>
+# {
+#   latitude: 48.930725,
+#   longitude: -125.53856
+# }
 #
 class GeoLocation < Base
   def call
-    return {} unless santitized_search_param.present?
+    return {} if santitized_search_param.blank?
 
-    Rails.cache.fetch(santitized_search_param, expires_in: 30.minutes) do
-      { latitude:, longitude: }
+    Rails.cache.fetch([:geocodes, santitized_search_param], expires_in: 30.minutes) do
+      response['results']
     end
   end
 
   private
-
-  def latitude
-    return nil if response['results'].blank?
-
-    response['results'][0]['latitude']
-  end
-
-  def longitude
-    return nil if response['results'].blank?
-
-    response['results'][0]['longitude']
-  end
 
   def path
     '/v1/search'
@@ -47,7 +39,7 @@ class GeoLocation < Base
 
   def api_params
     {
-      count: 1,
+      count: 10,
       format: 'json',
       language: 'en',
       name: santitized_search_param
@@ -55,13 +47,11 @@ class GeoLocation < Base
   end
 
   def santitized_search_param
-    return unless @params[:search].present?
-
     # ensure proper encoding to avoid issues
     str = @params[:search].encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
     # remove control and \n\t characters
     str = str.gsub(/[\p{Cc}&&[^\n\t]]/, '').strip
     # remove injection like characters
-    str.gsub(/[<>|]/, '')
+    str = str.gsub(/[<>|]/, '')
   end
 end

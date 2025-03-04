@@ -6,8 +6,3 @@
 		<%= render('weather/form', geocodes: @geocodes) %>
 	<% end %>
 <% end %>
-<%= turbo_stream.update('search_results') do %>
-	<% unless @geocodes.blank? || @weather.blank? %>
-		<%= render('weather/results', weather: @weather) %>
-	<% end %>
-<% end %>

@@ -19,3 +19,5 @@ Style/FrozenStringLiteralComment:
 Metrics/MethodLength:
   Enabled: true
   Max: 25
+Metrics/BlockLength:
+  Exclude: 'spec/**/*_spec.rb'
